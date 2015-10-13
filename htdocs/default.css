@@ -1,0 +1,26 @@
+body			{ cursor: default; }
+
+h3, h4			{ margin-bottom: 0px; padding-bottom: 0.5em; }
+
+A               { text-decoration: none; color: #666; }
+A:link          { text-decoration: none; color: #666; }
+A:visited       { text-decoration: none; color: #666; }
+A:active        { text-decoration: none; color: black; }
+A:hover         { text-decoration: none; color: black; }
+
+.menu			{ font-weight: bold; }
+.large			{ font-size: larger; }
+
+dl				{ margin-bottom: 0px; padding-bottom: 0px; }
+dt				{ font-size: larger; }
+dd				{ margin-left: 1em; }
+
+tr {}
+td				{ }
+th				{ }
+
+td.form			{ font-size: smaller; }
+th.form			{ font-size: smaller; font-weight: bold; text-align: right; }
+
+BODY, TD, TH, TR, FORM, OL, UL, LI, INPUT, TEXTAREA, SELECT { font-family: Verdana, sans-serif, Arial, Geneva;
+                                                              font-size: x-small; }

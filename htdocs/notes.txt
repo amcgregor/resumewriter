@@ -1,0 +1,69 @@
+Database
+ Users
+  id
+  e-mail
+  password
+  name
+  address
+  city
+  province
+  zip
+  phone
+  fax
+  pager
+  mobile
+  vemail
+  website
+  __timestamp
+
+Forms:
+
+Step Zero - Registration
+ - E-Mail Address
+ - Password
+
+Step One - Personal Information
+ - Name
+ - Address
+ - City
+ - Province
+ - Zip Code
+ - Phone
+ - Fax
+ - Pager
+ - Mobile
+ - Visible E-Mail
+ - Website
+
+Step Two - Section Management
+ - Add, Remove, Organize sections
+ - Modify sections
+    - Section title ("Objective", "Education", etc.)
+    - Section type ("Free text", "List", "Work", "Education", "References", etc.)
+    - Section Details (the list, the text, etc.)
+
+"Free Text" Section
+ - Large textarea, tips on HTML (bold, italic, underline)...
+
+"List" Section
+ - List type (1,2,3 - i,ii,iii - a,b,c - * - etc.)
+ - Add/remove list items
+
+"Experience" Section
+ - Places list
+    - Beginning date, ending date,
+    - company / organization
+    - city
+    - province/state
+    - country
+    - position
+    - description (free text / list)
+
+"Education" Section
+ - Places list
+    - Beginning, ending dates
+    - School
+    - city
+    - province/state
+    - country
+    - description (free text / list)

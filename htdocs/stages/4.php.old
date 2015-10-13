@@ -1,0 +1,47 @@
+<? if ( $disp ) { ?>
+  <td colspan="2" style="padding-bottom: 1em;">
+    <p>All resumes can be split into sections.  Here is where you manage the major ones.  You can re-arrange, add, remove, and more using the list below.</p>
+  </td>
+
+  <tr>
+    <td colspan="2" style="border-bottom: 1px solid black;"><b>Sections</b></td>
+  </tr>
+  <tr>
+    <td colspan="2"><select size="6" style="width: 100%;">
+<? foreach ( $sections as $section ) printf("      <option value=\"%s\">%s</option>\n", $section['id'], $section['name']); ?>
+    </select></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="padding-bottom: 1em;">
+      <table border="0" cellpadding="1" cellspacing="0" width="100%">
+        <tr>
+          <td><input type="submit" name="upbutton" value="Up" title="Move the selected item up, if possible." style="width: 100%;" /></td>
+          <td><input type="submit" name="downbutton" value="Down" title="Move the selected item down, if possible." style="width: 100%;" /></td>
+          <td><input type="submit" name="deletebutton" value="Delete" title="Remove the selected item from your resume." style="width: 100%;" /></td>
+          <td><input type="submit" name="modifybutton" value="Modify" title="Modify this section and any subsections." style="width: 100%;" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="border-bottom: 1px solid black;">&nbsp;</td>
+    <td style="border-bottom: 1px solid black;" width="90%"><b>Add a Section</b></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Name:</td>
+    <td width="90%"><input name="addname" value="" style="width: 100%;" onKeyPress="addexample.selectedIndex = 0;" /></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap style="color: #aaa; font-size: smaller;">I.e.:</td>
+    <td width="90%"><select name="addexample" style="color: #666; width: 100%; font-size: smaller;" onChange="addname.value = this.options[this.selectedIndex].text;"><option><option>Objective<option>Skills & Highlights<option>Employment History<option>Education<option>Volunteer Work<option>References</select></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Type:</td>
+    <td width="90%"><select name="addtype" style="width: 100%;"><option>Title<option>Text Area<option>Bulleted/Numbered List<option>Experience<option>Education<option>References</select></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="padding-bottom: 1em;" width="90%"><input type="submit" name="addbutton" value="Add Section" style="width: 100%;" /></td>
+  </tr>
+<? } ?>

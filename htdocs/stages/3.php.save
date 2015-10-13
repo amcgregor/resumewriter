@@ -1,0 +1,124 @@
+<? if ( $disp ) { ?>
+  <td colspan="2" style="padding-bottom: 1em;">
+    <p>All resumes can be split into sections.  Here is where you manage the major ones.  You can re-arrange, add, remove, and more using the list below.</p>
+  </td>
+
+  <tr>
+    <td colspan="2" style="border-bottom: 1px solid black;"><b>Sections</b></td>
+  </tr>
+  <tr>
+    <td colspan="2"><select name="sectid" size="6" style="width: 100%;" onChange="form.submit();">
+<? foreach ( $sections as $section ) printf("      <option value=\"%s\"%s>%s</option>\n", $section['id'], $section['id']==$_POST['sectid']?" selected":"", $section['name']); ?>
+    </select></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="padding-bottom: 1em;">
+      <table border="0" cellpadding="1" cellspacing="0" width="100%">
+        <tr>
+          <td width="33.3%"><input type="submit" name="upbutton" value="Up" title="Move the selected item up, if possible." style="width: 100%;" /></td>
+          <td width="33.3%"><input type="submit" name="downbutton" value="Down" title="Move the selected item down, if possible." style="width: 100%;" /></td>
+          <td width="33.3%"><input type="submit" name="deletebutton" value="Delete" title="Remove the selected item from your resume." style="width: 100%;" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+<? if ( !empty($sect) ) { ?>
+  <tr>
+    <td colspan="2" style="border-bottom: 1px solid black;"><b>Modify a Section</b></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Name:</td>
+    <td width="90%"><input name="modname" value="<?=$sect['name'];?>" style="width: 100%;" /></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Type:</td>
+    <td width="90%"><select name="modtype" style="width: 100%;">
+      <option value="empty"<?= ($sect['type'] == 'empty' ? " selected" : "");?>>Title
+      <option value="text"<?= ($sect['type'] == 'text' ? " selected" : "");?>>Text Area
+      <option value="list"<?= ($sect['type'] == 'list' ? " selected" : "");?>>Bulleted/Numbered List
+      <option value="experience"<?= ($sect['type'] == 'experience' ? " selected" : "");?>>Experience
+      <option value="education"<?= ($sect['type'] == 'education' ? " selected" : "");?>>Education
+      <option value="references"<?= ($sect['type'] == 'references' ? " selected" : "");?>>References
+    </select></td>
+  </tr>
+
+<? if ( $sect['type'] == 'text' ) { ?>
+  <tr>
+    <td align="right" valign="top" nowrap>Text:</td>
+    <td width="90%"><textarea rows="10" style="font-size: smaller; width: 100%;" name="modtext"><?=$sect['text'];?></textarea>
+  </tr>
+<? } else if ( $sect['type'] == 'list' ) { ?>
+  <tr>
+    <td align="right" nowrap>Style:</td>
+    <td width="90%"><select name="modstyle" style="width: 100%;">
+      <option<?= ($sect['listtype'] == "ul type='disc'" ? " selected" : ""); ?> value="ul type='disc'"> Bulleted (Filled Circles)<br />
+      <option<?= ($sect['listtype'] == "ul type='circle'" ? " selected" : ""); ?> value="ul type='circle'"> Bulleted (Hollow Circles)<br />
+      <option<?= ($sect['listtype'] == "ul type='square'" ? " selected" : ""); ?> value="ul type='square'"> Bulleted (Filled Squares)<br />
+      <option<?= ($sect['listtype'] == "ol type='1'" ? " selected" : ""); ?> value="ol type='1'"> Numbered (1, 2, 3...)<br />
+      <option<?= ($sect['listtype'] == "ol type='a'" ? " selected" : ""); ?> value="ol type='a'"> Numbered (a, b, c...)<br />
+      <option<?= ($sect['listtype'] == "ol type='i'" ? " selected" : ""); ?> value="ol type='i'"> Numbered (i, ii, iii...)<br />
+      <option<?= ($sect['listtype'] == "ol type='A'" ? " selected" : ""); ?> value="ol type='A'"> Numbered (A, B, C...)<br />
+      <option<?= ($sect['listtype'] == "ol type='I'" ? " selected" : ""); ?> value="ol type='I'"> Numbered (I, II, III...)<br />
+    </select></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top" nowrap><span title="One list item per line.">Items:</span></td>
+    <td width="90%"><textarea rows="10" style="font-size: smaller; width: 100%;" name="modtext" wrap="off"><?=$sect['text'];?></textarea>
+  </tr>
+<? } ?>
+
+  <tr>
+    <td></td>
+    <td style="padding-bottom: 1em;" width="90%" align="right"><input type="submit" name="modbutton" value="Save Changes" /></td>
+  </tr>
+<? } ?>
+
+  <tr>
+    <td colspan="2" style="border-bottom: 1px solid black;"><b>Add a Section</b></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Name:</td>
+    <td width="90%"><input name="addname" value="" style="width: 100%;" onKeyPress="addexample.selectedIndex = 0;" /></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap style="color: #aaa; font-size: smaller;">I.e.:</td>
+    <td width="90%"><select name="addexample" style="color: #666; width: 100%; font-size: smaller;" onChange="addname.value = this.options[this.selectedIndex].text;"><option><option>Objective<option>Skills & Highlights<option>Employment History<option>Education<option>Volunteer Work<option>References</select></td>
+  </tr>
+  <tr>
+    <td align="right" nowrap>Type:</td>
+    <td width="90%"><select name="addtype" style="width: 100%;"><option>Title<option>Text Area<option>Bulleted/Numbered List<option>Experience<option>Education<option>References</select></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="padding-bottom: 1em;" width="90%"><input type="submit" name="addbutton" value="Add Section" style="width: 100%;" /></td>
+  </tr>
+<? } else {
+
+      // User has switched to another tab - update data.
+
+      if ( isset($_POST['addbutton']) ) { // user added a section
+        $sql = sprintf("SELECT COUNT(*) FROM sections WHERE user=%d AND subsection=0", $userid);
+        $orderid = db_count(db_query($sql)) + 1;
+        $sql = sprintf("INSERT INTO sections user,order,type,name VALUES %d,%d,'%s'", $userid, $orderid, $_POST['addtype'], $_POST['addname']);
+        $_POST['sectid'] = 
+      }
+
+      if ( isset($_POST['modbutton']) ) { // user modified a section's details
+        if ( $_POST['modtype'] == 'empty' )
+          $sql = sprintf("UPDATE sections SET type='empty',name='%s' WHERE id=%d LIMIT 1", mysql_escape_string($_POST['modname']), $_POST['sectid']);
+        else if ( $_POST['modtype'] == 'text' )
+          $sql = sprintf("UPDATE sections SET type='text',name='%s',text='%s' WHERE id=%d LIMIT 1", mysql_escape_string($_POST['modname']), mysql_escape_string($_POST['modtext']), $_POST['sectid']);
+        else if ( $_POST['modtype'] == 'list' )
+          $sql = sprintf("UPDATE sections SET type='list',name='%s',text='%s',listtype='%s' WHERE id=%d LIMIT 1", mysql_escape_string($_POST['modname']), mysql_escape_string($_POST['modtext']), $_POST['modstyle'], $_POST['sectid']);
+        $res = db_query($sql);
+        echo mysql_error();
+
+        $sql = sprintf("SELECT * FROM sections WHERE user=%d AND subsection=0 ORDER BY `order`", $userid);
+        $sections = recurse_sections(db_query($sql));
+      }
+
+      if ( isset($_POST['sectid']) )
+        foreach ( $sections as $section ) if ( $section['id'] == $_POST['sectid'] ) $sect = $section;
+
+   }

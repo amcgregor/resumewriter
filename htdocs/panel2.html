@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="http://www.marginsoftware.com/default.css">
+<style>
+td { font-size: 8pt; }
+input { font-size: 8pt; }
+select { font-size: 8pt; }
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+function onChange(object) {
+  var Current = object.selectName.selectedIndex;
+  object.currentText.value = object.selectName.options[Current].text;
+  object.currentValue.value = object.selectName.options[Current].value;
+}
+
+function deleteOption(object) {
+  var Current = object.selectName.selectedIndex;
+  object.selectName.options[Current] = null;
+}
+
+function addOption(object) {
+  var defaultSelected = true;
+  var selected = true;
+  var optionName = new Option(object.currentText.value, object.currentValue.value, defaultSelected, selected)
+  var length = object.selectName.length;
+  object.selectName.options[length] = optionName;
+}
+
+function replaceOption(object) {
+  var Current = object.selectName.selectedIndex;
+  object.selectName.options[Current].text = object.currentText.value;
+  object.selectName.options[Current].value = object.currentText.value;
+}
+
+function moveOption(object, direction) {
+  var Current = object.selectedIndex;
+  var Previous = object.selectedIndex + direction;
+  var Text, Value;
+
+  if ( direction < 0 ) {
+    if ( Current == 0 ) return;
+  } else {
+    if ( Current == object.options.count + 1 ) return;
+  }
+
+  Text = object.options[Previous].text;
+  Value = object.options[Previous].value;
+
+  object.options[Previous].text = object.options[Current].text;
+  object.options[Previous].value = object.options[Current].value;
+  object.options[Current].text = Text;
+  object.options[Current].value = Value;
+
+  object.selectedIndex += direction;
+}
+
+//-->
+</SCRIPT> 
+
+</head>
+<body bgcolor="white" text="black" style="border-right: 1px solid black; margin: 1em;"><a name="top"></a>
+
+<div style="text-align: center; font-size: 14pt; margin: 15px; margin-left: 0px; text-decoration: underline;">Information Blocks</div>
+
+<table border=0 cellpadding=2 cellspacing="0" align="center" style="width: 300px;"><form>
+
+<tr>
+  <td width="40%" align="right">
+    <table width="100%" height="100%" border=0 cellpadding=0 cellspacing=0 align="right">
+      <tr><td align="right" valign="middle"><input type="button" name="button" value="Move Up" onClick="moveOption(fsections, -1);"></td></tr>
+      <tr><td align="right" valign="middle"><input type="button" name="button" value="Move Down" onClick="moveOption(fsections, 1);"></td></tr>
+      <tr><td align="right" valign="middle"><input type="button" name="button" value="Remove"></td></tr>
+    </table>
+  </td>
+  <td>
+    <select name="fsections" id="fsections" size="6" style="width: 100%;" onChange="parent.preview.location.href='preview.html#'+this.options[this.selectedIndex].value;">
+      <option value="s1">Skills & Highlights
+      <option value="s2">Employment History
+      <option value="s3">Education
+      <option value="s4">References
+    </select>
+  </td>
+</tr>
+
+
+</table>
+
+<table width="100%" border=0 cellpadding=0 cellspacing=0>
+
+<tr>
+  <td><input type="button" name="update" value="Update"></td>
+  <td align="right"><input type="submit" name="prev" value="&lt; Previous" onClick="parent.fpanel.location.href='panel.html'; return true;"><span style="width: 1em;">&nbsp;</span><input type="button" name="next" onClick="parent.fpanel.location.href='panel3.html'; return true;" value="Next &gt;"></td>
+</tr>
+
+</form></table>
+
+</body>
+</html>

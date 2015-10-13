@@ -1,0 +1,13 @@
+body, div	{ cursor: default; font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 12pt; }
+
+h3, h4			{ margin-bottom: 0px; padding-bottom: 0.5em; }
+
+A               { text-decoration: none; color: #666; }
+A:link          { text-decoration: none; color: #666; }
+A:visited       { text-decoration: none; color: #666; }
+A:active        { text-decoration: none; color: black; }
+A:hover         { text-decoration: none; color: black; }
+
+dl				{ margin-bottom: 0px; padding-bottom: 0px; }
+dt				{ font-size: larger; }
+dd				{ margin-left: 1em; }
